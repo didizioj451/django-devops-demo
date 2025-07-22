@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog DevOps Django</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #333;
+        }
+        .header {
+            background: #2c3e50;
+            color: white;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border-radius: 5px;
+            text-align: center;
+        }
+        .post {
+            background: #f9f9f9;
+            border-left: 4px solid #3498db;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            border-radius: 0 5px 5px 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .post h3 {
+            color: #2c3e50;
+            margin-top: 0;
+        }
+        .post-meta {
+            color: #7f8c8d;
+            font-size: 0.9rem;
+        }
+        .empty-message {
+            text-align: center;
+            padding: 2rem;
+            color: #7f8c8d;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <h1>Blog DevOps Django</h1>
+        <p>Application de démonstration pour la formation DevOps</p>
+    </header>
+
+    <main class="content">
+        <h2>Articles récents</h2>
+        
+        {% for post in posts %}
+            <article class="post">
+                <h3>{{ post.title }}</h3>
+                <p>{{ post.content }}</p>
+                <p class="post-meta">
+                    Publié par <strong>{{ post.author.username }}</strong> 
+                    le {{ post.created_at|date:"d/m/Y à H:i" }}
+                </p>
+            </article>
+        {% empty %}
+            <div class="empty-message">
+                <p>Aucun article disponible pour le moment.</p>
+            </div>
+        {% endfor %}
+    </main>
+</body>
+</html>
