@@ -3,14 +3,13 @@ import os
 
 DEBUG = False
 
-# Railway fournit automatiquement cette variable
 ALLOWED_HOSTS = [
     '.railway.app',
     'localhost',
     '127.0.0.1',
 ]
 
-# Base de données Railway (PostgreSQL automatique)
+# Base de données Railway
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
@@ -22,7 +21,7 @@ DATABASES = {
     }
 }
 
-# Fichiers statiques avec WhiteNoise
+# Fichiers statiques
 MIDDLEWARE.insert(1, 'whitenoise.middleware.WhiteNoiseMiddleware')
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 STATIC_ROOT = BASE_DIR / 'staticfiles'

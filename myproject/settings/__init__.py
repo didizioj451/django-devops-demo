@@ -1,1 +1,1 @@
-# Ce fichier permet à Python de reconnaître settings comme un package
+# Settings package

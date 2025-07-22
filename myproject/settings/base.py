@@ -1,9 +1,9 @@
 from pathlib import Path
-from decouple import config
+import os
 
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
-SECRET_KEY = config('SECRET_KEY', default='django-insecure-dev-key')
+SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-dev-key')
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -45,7 +45,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'myproject.wsgi.application'
 
-# Base de données par défaut (SQLite pour développement)
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
