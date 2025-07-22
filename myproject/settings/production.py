@@ -1,30 +1,25 @@
 from .base import *
 import os
+import dj_database_url
 
 DEBUG = False
 
 ALLOWED_HOSTS = [
-    '.railway.app',
+    '.onrender.com',
     'localhost',
     '127.0.0.1',
 ]
 
-# Base de données Railway
+# Base de données avec dj-database-url pour Render
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.environ.get('PGDATABASE'),
-        'USER': os.environ.get('PGUSER'),
-        'PASSWORD': os.environ.get('PGPASSWORD'),
-        'HOST': os.environ.get('PGHOST'),
-        'PORT': os.environ.get('PGPORT', '5432'),
-    }
+    'default': dj_database_url.parse(
+        os.environ.get('DATABASE_URL', 'sqlite:///db.sqlite3')
+    )
 }
 
-# Fichiers statiques
+# Fichiers statiques avec WhiteNoise
 MIDDLEWARE.insert(1, 'whitenoise.middleware.WhiteNoiseMiddleware')
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 # Sécurité
 SECURE_SSL_REDIRECT = True
